@@ -1,0 +1,53 @@
+<!-- PARA HACER UNA TABLA SIN ESTILOS NI NADA:
+<div>
+    <button [routerLink]="['nuevo']"> Crear nuevo producto </button>
+</div>
+
+<div *ngFor="let producto of productos">
+    <p>Id: {{producto._id}}</p>
+    <p>Nombre: {{producto.nombre | titlecase}}</p>
+    <p>Sku: {{producto.sku}}</p>
+    <p>Precio: {{producto.precio | currency}}</p>
+    <p>Descripcion: {{producto.descripcion | titlecase}}</p>
+    <p>Stock: {{producto.stock}}</p>
+    <p>Categoria: {{producto.categoria.nombre | titlecase}}</p>
+    <div *ngIf="producto.image_path">
+        <img src="{{producto.image_path}}" width="100" height="100" alt="Foto {{producto.nombre}}">
+    </div>
+    <hr>
+    <hr>
+</div>
+-->
+
+    <div>
+        <button [routerLink]="['nuevo']"> Crear nuevo producto </button>
+    </div>
+
+    <ngx-datatable class="material" columnMode="force" [rows]="rows" [headerHeight]="50" [footerHeight]="50"
+    rowHeight="auto" rowWidth="auto" [externalPaging]="true" [count]="page.totalElements" [offset]="page.pageNumber"
+    [limit]="page.size" (page)="setPage($event)">
+
+    <ngx-datatable-column *ngFor="let col of columns" 
+    [name]="col.name" [prop]="col.prop"></ngx-datatable-column>
+    
+    <ngx-datatable-column name="Acciones" prop="id">
+    <ng-template let-row="data" let-value="value" ngx-datatable-cell-template>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+    </button>
+    
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/productos-editar/{{value}}">
+            <mat-icon>edit</mat-icon>
+            <span>Editar</span>
+        </button>
+        <button mat-menu-item (click)="eliminar(value)">
+            <mat-icon>delete_forever</mat-icon>
+            <span>Borrar</span>
+        </button>
+    </mat-menu>
+        </ng-template>
+    </ngx-datatable-column>
+
+</ngx-datatable>

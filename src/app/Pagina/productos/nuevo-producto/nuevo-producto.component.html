@@ -1,0 +1,48 @@
+<form [formGroup]="myForm" (ngSubmit)="crearProducto()">
+    <div>
+        <div>
+            <label>Nombre: </label>
+            <input type="text" formControlName="nombre" placeholder="Ej: Alfajor Guaymallen">
+        </div>
+        <div [ngClass]="{error: myForm.get('nombre').errors && myForm.get('nombre').dirty}">
+            <p *ngIf="myForm.get('nombre').hasError('required') && myForm.get('nombre').dirty">El nombre del producto es obligatorio</p>
+            </div>
+
+        <div>
+            <label>Sku: </label>
+            <input type="text" formControlName="sku" placeholder="Ej: 779862341">
+        </div>
+        <div [ngClass]="{error: myForm.get('sku').errors && myForm.get('sku').dirty}">
+            <p *ngIf="myForm.get('sku').hasError('required') && myForm.get('sku').dirty">El codigo de barras es obligatorio</p>
+            </div>
+        <div>
+            <label>Precio: </label>
+            <input type="number" formControlName="precio" placeholder="Ej: 54">
+        </div>
+        <div [ngClass]="{error: myForm.get('precio').errors && myForm.get('precio').dirty}">
+            <p *ngIf="myForm.get('precio').hasError('precio') && myForm.get('precio').dirty">El precio del producto es obligatorio</p>
+        </div>
+        <div>
+            <label>Descripcion: </label>
+            <input type="text" formControlName="descripcion" placeholder="Ej: Excelente producto">
+        </div>
+        <div [ngClass]="{error: myForm.get('descripcion').errors && myForm.get('descripcion').dirty}">
+            <p *ngIf="myForm.get('descripcion').hasError('descripcion') && myForm.get('descripcion').dirty">La descripcion debe ser menor a 255 caracteres</p>
+        </div>
+        <div>
+            <label>Stock: </label>
+            <input type="number" formControlName="stock" placeholder="Ej: 49">
+        </div>
+        <div>
+            <label>Categoria: </label>
+            <select formControlName="categoria">
+                <option *ngFor="let category of categorias"
+                 value="{{category._id}}">{{category.nombre | titlecase}}</option>
+            </select> 
+        </div>
+        <div>
+        <input type="file" name="foto" ng2FileSelect [uploader]="uploader"/>
+        </div>
+        <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid">Crear producto</button>
+    </div>
+</form>

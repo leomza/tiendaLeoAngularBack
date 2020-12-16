@@ -1,0 +1,42 @@
+<form [formGroup]="myForm" (ngSubmit)="crearUsuario()">
+    <div>
+        <div>
+            <label>Nombre: </label>
+            <input type="text" formControlName="nombre" placeholder="Ej: Juan">
+        </div>
+        <div [ngClass]="{error: myForm.get('nombre').errors && myForm.get('nombre').dirty}">
+            <p *ngIf="myForm.get('nombre').hasError('required') && myForm.get('nombre').dirty">El nombre es obligatorio</p>
+            </div>
+
+        <div>
+            <label>Apellido: </label>
+            <input type="text" formControlName="apellido" placeholder="Ej: Perez">
+        </div>
+        <div [ngClass]="{error: myForm.get('apellido').errors && myForm.get('apellido').dirty}">
+            <p *ngIf="myForm.get('apellido').hasError('required') && myForm.get('apellido').dirty">El apellido es obligatorio</p>
+            </div>
+        <div>
+            <label>Telefono: </label>
+            <input type="tel" formControlName="telefono" placeholder="Ej: 5492616736296">
+        </div>
+        <div [ngClass]="{error: myForm.get('telefono').errors && myForm.get('telefono').dirty}">
+            <p *ngIf="myForm.get('telefono').hasError('required') && myForm.get('telefono').dirty">El telefono es obligatorio</p>
+            </div>
+        <div>
+            <label>Email: </label>
+            <input type="email" formControlName="email" placeholder="Ej: abcd@hotmail.com">
+        </div>
+        <div [ngClass]="{error: myForm.get('email').errors && myForm.get('email').dirty}">
+            <p *ngIf="myForm.get('email').hasError('required') && myForm.get('email').dirty">El email es obligatorio</p>
+            </div>
+        <div>
+            <label>Contraseña: </label>
+            <input type="password" formControlName="password" placeholder="Ej: Contraseña123">
+        </div>
+        <div [ngClass]="{error: myForm.get('password').errors && myForm.get('password').dirty}">
+            <p *ngIf="myForm.get('password').hasError('required') && myForm.get('password').dirty">La contraseña es obligatoria</p>
+            </div>
+        
+        <button mat-raised-button color="primary" type="submit" [disabled]="myForm.invalid">Registrarse</button>
+    </div>
+</form>

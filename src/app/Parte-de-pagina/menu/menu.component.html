@@ -1,0 +1,8 @@
+<div>
+    <button [routerLink]="['home']" > Inicio </button>
+    <button *ngIf="!logueado" [routerLink]="['login']" > Iniciar sesion </button>
+    <button *ngIf="logueado" [routerLink]="['usuario']" > Usuarios </button>
+    <button *ngIf="logueado" [routerLink]="['categoria']" > Categorias </button>
+    <button *ngIf="logueado" [routerLink]="['producto']" > Productos </button>
+    <button *ngIf="logueado" mat-button (click)="cerrarSesion()">Cerrar sesion </button>
+</div>

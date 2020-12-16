@@ -1,0 +1,23 @@
+<div>
+    <button [routerLink]="['nuevaCate']" > Crear nueva Categoria </button>
+</div>
+<!--
+<div *ngFor="let categoria of categorias">
+    <p>Id: {{categoria._id}}</p>
+    <p>Nombre: {{categoria.nombre | titlecase}}</p>
+    <hr>
+    <hr>
+</div>
+-->
+
+    <ngx-datatable
+      class="material"
+      [rows]="rows"
+      [columns]="[{ name: 'Nombre'}, { name: 'Acciones'}]"
+      [columnMode]="ColumnMode.force"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      rowHeight="auto"
+      [limit]="10"
+    ></ngx-datatable>
+    
